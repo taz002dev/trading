@@ -5,10 +5,20 @@ import requests
 pair = 'btc-strat'
 ticker = requests.get("https://bittrex.com/api/v1.1/public/getticker?market="+pair)
 orderbook = requests.get("https://bittrex.com/api/v1.1/public/getorderbook?market=btc-strat&type=both&depth=50")
-result = json_normalize(ticker,'result')
-buy = json_normalize(orderbook.json()['result']['buy'])
+result = json_normalize(ticker.json(),'result')
+buy = json_normalize(orderbook.json()['result']['buy']) #=dataframe format
 sell = json_normalize(orderbook.json()['result']['sell'])
-
+ f = format(sell['Rate'][0],'0.8f')
+ sell.info()
+sell['Rate']*sell['Quantity'].sum()
+value=[]
+value=sell['Rate']*sell['Quantity']
+# add element to DataFrame
+sell['value']=sell['Rate']*sell['Quantity']
+group=sell.groupby('Rate')['value'].sum()
+#good
+grouped=buy.groupby('Rate').sum()
+grouped
 
 """
 http://www.shanelynn.ie/summarising-aggregation-and-grouping-data-in-python-pandas/

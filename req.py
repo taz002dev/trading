@@ -8,22 +8,23 @@ v_buytot = 0
 v_selltot = 0
 n=0
 j=0
-input_coin= input("Input Coin:")
+#input_coin= input("Input Coin:")
 
 #if not input_coin:
 pair = 'btc-strat'
 #else:
 #    pair = "btc-"+input_coin
 
-cprint(pair.upper(),"green", 'on_white')
+cprint(pair.upper(),"green")
 
 ticker = requests.get("https://bittrex.com/api/v1.1/public/getticker?market="+pair)
 orderbook = requests.get("https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-strat&type=both&depth=50")
 #print (orderbook.json())
 for tick_res in ticker.json()["result"]:
     v_tikval = format(ticker.json()["result"][tick_res], '0.8f')
-    f_tick = f_tick + tick_res + " : "+ colored(v_tikval,"red") + " "
-print (f_tick)
+    f_tick = f_tick + tick_res + " : "+ v_tikval + " "
+cprint (f_tick,"grey", "on_white")
+#print(f_tick)
 
 cprint("BUY","white", "on_blue")
 for i in orderbook.json()["result"]["buy"]:
