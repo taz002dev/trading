@@ -10,10 +10,10 @@ n=0
 j=0
 input_coin= input("Input Coin:")
 
-if not input_coin:
-    pair = 'btc-strat'
-else:
-    pair = "btc-"+input_coin
+#if not input_coin:
+pair = 'btc-strat'
+#else:
+#    pair = "btc-"+input_coin
 
 cprint(pair.upper(),"green", 'on_white')
 

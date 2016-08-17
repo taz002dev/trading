@@ -20,7 +20,7 @@ def ordbook(threshold,length):
 
     ticker = requests.get("https://bittrex.com/api/v1.1/public/getticker?market="+pair)
     orderbook = requests.get("https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-strat&type=both&depth=50")
-    #print (orderbook.json())
+    
     for tick_res in ticker.json()["result"]:
         v_tikval = format(ticker.json()["result"][tick_res], '0.8f')
         f_tick = f_tick + tick_res + " : "+ colored(v_tikval,"red") + " "
