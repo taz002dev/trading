@@ -1,6 +1,7 @@
 import pandas
 from pandas.io.json import json_normalize
 import requests
+import matplotlib as mp
 #from termcolor import colored, cprint
 pair = 'btc-strat'
 ticker = requests.get("https://bittrex.com/api/v1.1/public/getticker?market="+pair)
