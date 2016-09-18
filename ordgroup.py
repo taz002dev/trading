@@ -5,7 +5,11 @@ import matplotlib as mp
 #from termcolor import colored, cprint
 pair = 'btc-strat'
 ticker = requests.get("https://bittrex.com/api/v1.1/public/getticker?market="+pair)
-orderbook = requests.get("https://bittrex.com/api/v1.1/public/getorderbook?market=btc-strat&type=both&depth=50")
+# print ("Script Name: %s" % name)
+#print("https://bittrex.com/api/v1.1/public/getorderbook?market=%s&type=both&depth=50" % pair)
+# this did not work
+orderbook = requests.get("https://bittrex.com/api/v1.1/public/getorderbook?market=%s&type=both&depth=50" % pair)
+#orderbook = requests.get("https://bittrex.com/api/v1.1/public/getorderbook?market=btc-strat&type=both&depth=50")
 result = json_normalize(ticker.json(),'result')
 buy = json_normalize(orderbook.json()['result']['buy']) #=dataframe format
 sell = json_normalize(orderbook.json()['result']['sell'])
